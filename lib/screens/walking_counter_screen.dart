@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:walking_counter/models/bloc/walk_counter_bloc.dart';
+import 'package:walking_counter/models/bloc/walk_counter/walk_counter_bloc.dart';
 
 class WalkingCounterScreen extends StatefulWidget {
   @override

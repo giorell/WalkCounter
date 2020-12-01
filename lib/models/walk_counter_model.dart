@@ -71,7 +71,7 @@ class PedometerStream implements WalkingDataStream {
   }
 }
 
-class WalkCounterStream implements WalkingDataStream {
+class DummyWalkStream implements WalkingDataStream {
   Duration walking = Duration(milliseconds: 700);
   Duration running = Duration(milliseconds: 200);
 
@@ -121,7 +121,7 @@ class WalkCounterStream implements WalkingDataStream {
   }
 }
 
-class WalkCounterModel extends WalkCounterStream {
+class WalkCounterModel extends DummyWalkStream {
   WalkCounterModel(this.id, this.steps, this.timeStamp)
       : assert(id != null),
         assert(steps != null),
@@ -137,7 +137,7 @@ class WalkCounterModel extends WalkCounterStream {
   }
 
   Map<String, dynamic> toJson() => {
-        "id": this.id,
+        //"id": this.id,
         "steps": this.steps,
         "timeStamp": this.timeStamp.toIso8601String(),
       };
