@@ -132,8 +132,15 @@ class WalkCounterModel extends DummyWalkStream {
   DateTime timeStamp;
 
   factory WalkCounterModel.fromJson(Map<String, dynamic> data) {
+    int steps;
+    try {
+      steps = data['steps'];
+    } catch (e) {
+      steps = int.parse(data['steps']);
+    }
+
     return WalkCounterModel(
-        data['id'], data['steps'], DateTime.parse(data['timeStamp']));
+        data['id'], steps, DateTime.parse(data['timeStamp']));
   }
 
   Map<String, dynamic> toJson() => {

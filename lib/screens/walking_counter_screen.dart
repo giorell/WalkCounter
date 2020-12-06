@@ -58,95 +58,99 @@ class _WalkingCounterScreenState extends State<WalkingCounterScreen> {
     );
   }
 
-  Column _build() {
-    return Column(
-      //mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Text(
-                  'Steps Taken',
-                  style: TextStyle(fontSize: 25),
-                ),
-                Text(
-                  '$_stepsTaken',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Text(
-                  'Steps Total',
-                  style: TextStyle(fontSize: 25),
-                ),
-                Text(
-                  '$_stepsTotal',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ],
-            ),
-          ],
-        ),
-        Divider(
-          height: 50,
-          thickness: 0,
-          color: Colors.grey,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                Text(
-                  'Calories',
-                  style: TextStyle(fontSize: 25),
-                ),
-                Text(
-                  '$_calories',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ],
-            ),
-          ],
-        ),
-        Divider(
-          height: 50,
-          thickness: 0,
-          color: Colors.grey,
-        ),
-        Center(
-          child: Text(
-            'Pedestrian status',
-            style: TextStyle(fontSize: 25),
+  Container _build() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'Steps Taken',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Text(
+                    '$_stepsTaken',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Steps Total',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Text(
+                    '$_stepsTotal',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ),
-        getPedestrainStatusIcon(),
-        Center(
-          child: Text(
-            _speed,
-            style: _speed == 'Walking' ||
-                    _speed == 'Stationary' ||
-                    _speed == 'Running'
-                ? TextStyle(fontSize: 25)
-                : TextStyle(fontSize: 20, color: Colors.red),
+          Divider(
+            height: 30,
+            thickness: 0,
+            color: Colors.grey,
           ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        _startStopButton(),
-        FlatButton(
-          onPressed: () {
-            context.read<WalkCounterBloc>().add(WalkCounterDeleteDatabase());
-          },
-          child: Text('Delete Database'),
-        ),
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'Calories',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Text(
+                    '$_calories',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Divider(
+            height: 30,
+            thickness: 0,
+            color: Colors.grey,
+          ),
+          Center(
+            child: Text(
+              'Pedestrian status',
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
+          getPedestrainStatusIcon(),
+          Center(
+            child: Text(
+              _speed,
+              style: _speed == 'Walking' ||
+                      _speed == 'Stationary' ||
+                      _speed == 'Running'
+                  ? TextStyle(fontSize: 25)
+                  : TextStyle(fontSize: 20, color: Colors.red),
+            ),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          _startStopButton(),
+          FlatButton(
+            onPressed: () {
+              context.read<WalkCounterBloc>().add(WalkCounterDeleteDatabase());
+            },
+            child: Text('Delete Database'),
+          ),
+        ],
+      ),
     );
   }
 

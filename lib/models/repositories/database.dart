@@ -33,7 +33,7 @@ class DatabaseProvider {
     await database.execute('''CREATE TABLE $walkCounterTABLE (
         id INTEGER PRIMARY KEY, 
         steps INTEGER, 
-        timeStamp TEXT, 
+        timeStamp TEXT 
         )''');
   }
 }

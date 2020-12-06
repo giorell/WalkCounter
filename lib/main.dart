@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:walking_counter/models/bloc/dashboard/dashboard_bloc.dart';
+import 'package:walking_counter/models/dummy_dashboard_data.dart';
 import 'package:walking_counter/models/repositories/walk_counter_repository.dart';
 import 'package:walking_counter/models/walk_counter_model.dart';
 import 'package:walking_counter/screens/dashboard_screen.dart';
@@ -26,8 +27,8 @@ class WalkCounter extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) =>
-                WalkCounterBloc(PedometerStream(), WalkCounterRepository()),
+            create: (_) => WalkCounterBloc(
+                PedometerStream(), WalkCounterRepository()), //PedometerStream()
           ),
           BlocProvider(
             create: (_) => DashboardBloc(WalkCounterRepository()),
@@ -64,8 +65,6 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         padding: EdgeInsets.all(20),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
             Container(
@@ -80,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            Expanded(child: SizedBox(height: 30)),
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 156,
